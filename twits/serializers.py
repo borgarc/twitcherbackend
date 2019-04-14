@@ -5,3 +5,8 @@ class TwitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Twit
         fields = ('id', 'content', )
+
+class RepliesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Replies
+        fields = ('content', )

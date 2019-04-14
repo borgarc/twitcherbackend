@@ -7,3 +7,7 @@ class TwitsViewSet(ModelViewSet):
     queryset = Twit.objects.all()
     serializer_class = TwitSerializer
 
+class RepliesViewSet(ModelViewSet):
+    queryset = Replies.objects.all()
+    serializer_class = RepliesSerializer
+

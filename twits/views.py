@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
-from twits.models import Twit, Replies
+from twits.models import Twit, Reply
 from twits.serializers import TwitSerializer, RepliesSerializer
 
 class TwitsViewSet(ModelViewSet):
@@ -8,6 +8,6 @@ class TwitsViewSet(ModelViewSet):
     serializer_class = TwitSerializer
 
 class RepliesViewSet(ModelViewSet):
-    queryset = Replies.objects.all()
+    queryset = Reply.objects.all()
     serializer_class = RepliesSerializer
 

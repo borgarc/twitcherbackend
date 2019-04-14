@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from twits.models import Twit, Replies
+from twits.models import Twit, Reply
 
 class TwitSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,6 +8,6 @@ class TwitSerializer(serializers.ModelSerializer):
 
 class RepliesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Replies
+        model = Reply
         fields = ('id', 'content', 'user', 'twit', )
 

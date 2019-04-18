@@ -1,7 +1,7 @@
 from django.contrib import admin
-from twits.models import Twit, Reply
+from twits.models import Person
 
-@admin.register(Twit, Reply)
+@admin.register(Person)
 class AuthorAdmin(admin.ModelAdmin):
     pass
 

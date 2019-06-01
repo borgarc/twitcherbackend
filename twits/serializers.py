@@ -15,7 +15,14 @@ class TwitSerializer(serializers.ModelSerializer):
         model = Twit
         fields = ('id', 'user', 'content', 'retwited_by', 'liked_by', 'created',)
 
-class RepliesSerializer(serializers.ModelSerializer):
+class RepliesSaveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reply
-        fields = ('id', 'content', 'user', 'twit', )
+        fields = ('id', 'content', 'user', 'twit', 'created')
+
+class RepliesSerializer(serializers.ModelSerializer):
+    user = PersonTwitSerializer(read_only=True)
+    class Meta:
+        model = Reply
+        fields = ('id', 'content', 'user', 'twit', 'created')
+

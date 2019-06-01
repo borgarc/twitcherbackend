@@ -4,7 +4,7 @@ from people.models import Person
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('id', 'user', 'followers', )
+        fields = ('id', 'user', 'follows', )
 
 class PersonTwitSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
@@ -28,8 +28,6 @@ class PersonTwitSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     username = serializers.SerializerMethodField()
-    followers = serializers.SerializerMethodField()
-    following = serializers.SerializerMethodField()
 
     def get_name(self, person):
         return u'{first_name} {last_name}'.format(
@@ -42,13 +40,6 @@ class ProfileSerializer(serializers.ModelSerializer):
             username=person.user.username,
         )
 
-
-    def get_followers(self, person):
-        return person.followers.count()
-
-    def get_following(self, person):
-        return Person.objects.filter(followers__id=person.id).count()
-
     class Meta:
         model = Person
-        fields = ('id', 'name', 'username', 'followers', 'following')
+        fields = ('id', 'name', 'username', 'follows', 'followers')

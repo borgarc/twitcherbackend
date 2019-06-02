@@ -12,7 +12,7 @@ class TwitsViewSet(ModelViewSet):
     ordering = ('-created',)
 
     def get_queryset(self):
-        user = self.request.user.person
+        user = self.request.query_params['user']
         my_twits = Q(user=user)
         following_twits = Q(user__followers=user)
         return Twit.objects.filter(my_twits | following_twits).distinct()

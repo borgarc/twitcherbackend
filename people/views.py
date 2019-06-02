@@ -1,11 +1,17 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework import mixins
 from people.filters import PersonFilter
 from people.models import Person
-from people.serializers import PersonSerializer, ProfileSerializer, PersonTwitSerializer
+from people.serializers import PersonSerializer, ProfileSerializer, PersonTwitSerializer, UserSerializer
+
+class UserViewSet(mixins.CreateModelMixin, GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class PersonViewSet(ModelViewSet):
     queryset = Person.objects.all()

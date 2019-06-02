@@ -23,7 +23,7 @@ class PersonTwitSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Person
-        fields = ('id', 'name', 'username',)
+        fields = ('id', 'name', 'username', 'follows', 'followers')
 
 class ProfileSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()

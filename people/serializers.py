@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from people.models import Person
 
@@ -43,3 +44,23 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ('id', 'name', 'username', 'follows', 'followers')
+
+class UserSerializer(serializers.ModelSerializer):
+
+    def create(self, validated_data):
+        user = super(UserSerializer, self).create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'username',
+            'password',
+        )
+        extra_kwargs = {
+            'password': { 'write_only': True },
+        }

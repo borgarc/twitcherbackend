@@ -12,6 +12,8 @@ from people.serializers import PersonSerializer, ProfileSerializer, PersonTwitSe
 class UserViewSet(mixins.CreateModelMixin, GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    authentication_classes = ()
+    permission_classes = ()
 
 class PersonViewSet(ModelViewSet):
     queryset = Person.objects.all()
